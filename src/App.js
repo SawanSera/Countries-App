@@ -7,7 +7,7 @@ import IndividualCountry from './components/countries/Individualcountry';
 //Theme and dark mode related imports 
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from './components/layout/Globalstyle';
-import { lightTheme, darkTheme } from './ /layout/Theme';
+import { lightTheme, darkTheme } from './components/layout/Theme';
 import { useDarkMode } from './components/layout/useDarkMode';
 import ToggleNew from './components/layout/Togglernew';
 
