@@ -24,7 +24,7 @@ self.addEventListener('install', (event) => {
 
 //Fetch event catching
 self.addEventListener('fetch', event => {
-    if (!(evt.request.url.indexOf('http') === 0)) return; // skip the request. if request is not made with http protocol
+    if (!(event.request.url.indexOf('http') === 0)) return; // skip the request. if request is not made with http protocol
     event.respondWith(
         caches.match(event.request).then((cacheRes) => {
             return cacheRes ||  fetch(event.request).then(fetchRes => {

@@ -1,7 +1,7 @@
 import React from 'react';
 
+const SingleCountry = ({country, covidData}) => {
 
-const SingleCountry = ({country}) => {
 
     return ( 
 
@@ -23,6 +23,30 @@ const SingleCountry = ({country}) => {
                     </p>
                     <p>
                         Population: {country.population}
+                    </p>
+                    <div className='line-separation'></div>
+                    <h6>
+                        COVID-19 Information
+                    </h6>
+                    <p>
+                        Daily no: {
+                            covidData ? covidData.NewConfirmed : ''
+                        }
+                    </p>
+                    <p>
+                        Total Confirmed: {
+                            covidData ? covidData.TotalConfirmed : ''
+                        }
+                    </p>
+                    <p>
+                        Total Deaths: {
+                            covidData ? covidData.TotalDeaths : ''
+                        }
+                    </p>
+                    <p>
+                        Total Recovered: {
+                            covidData ? covidData.TotalRecovered : ''
+                        }
                     </p>
                 </div>
                 </div>

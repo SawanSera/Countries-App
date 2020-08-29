@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react'
 import { CountriesContext } from '../../context/CountriesContext';
 import SingleCountry from './Singlecountry';
 import Countriesapi from '../countriesapi/Countriesapi';
+import axios from 'axios';
 
 
 const IndividualCountry = (props) => {
@@ -15,6 +16,7 @@ const IndividualCountry = (props) => {
     useEffect(() => {
         if (countrylist.country.length === 0){
             getCountry();
+            getCovidData();
         }
 
     }, [countrylist])
@@ -33,21 +35,43 @@ const IndividualCountry = (props) => {
             .catch(err => console.log(err));
     }
 
+    //Retrieve the covid data from the API 
+    const getCovidData = async() => {
+        await axios.get('https://api.covid19api.com/summary')
+           .then((list) => {
+               return dispatch({
+                   type:'COVID_INFO',
+                   payload: list.data.Countries
+               })
+           })
+       
+   }
+
 
     //Match the clicked country with the context and retrieve the necessary data
     const arrCountry = [...countrylist.country]
+    const arrCovid = [...countrylist.covid]
     const matchingCountry = arrCountry.filter( country => {
         return country.name === clickedName
     })
+    console.log(arrCovid);
     
 
     return ( 
         <div className="container individual-container">
-            {matchingCountry.map(country => {
+            {matchingCountry.map(country => {  
+                
+                const matchingCovidCountry = arrCovid.filter(countryCovid => {
+                    return  countryCovid.CountryCode === country.alpha2Code
+                })
+
+                const covidData = matchingCovidCountry[0]
+
                 return (
-                    <SingleCountry country = {country} key = {country.name} />
+                    <SingleCountry country = {country} covidData ={covidData} key = {country.name} />
                 )
             })}
+            
         </div>
      );
 

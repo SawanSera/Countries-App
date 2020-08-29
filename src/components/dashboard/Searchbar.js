@@ -20,6 +20,7 @@ const SearchBar = () => {
             allCountries();
         }else if( query === ''){
             allCountries();
+            getCovidData();
         } 
     }, [query, keyPressed])
 
@@ -44,12 +45,24 @@ const SearchBar = () => {
     const allCountries = async() => {
         await axios.get("https://restcountries.eu/rest/v2/all")
             .then( resp => {
-                //console.log(resp.data)
+                //console.log(resp)
                 return dispatch({
                     type: 'ALL_COUNTRY',
                     payload: resp.data
                 })
             })
+    }
+
+    //Retrieve the covid data from the API 
+    const getCovidData = async() => {
+         await axios.get('https://api.covid19api.com/summary')
+            .then((list) => {
+                return dispatch({
+                    type:'COVID_INFO',
+                    payload: list.data.Countries
+                })
+            })
+        
     }
 
 

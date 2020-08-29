@@ -18,6 +18,8 @@ export const countriesReducer = (state, action) => {
             return {...state, category: resp}
         case 'INDIVIDUAL_REFRESH':
             return {...state, country: action.payload, homepage: true }
+        case 'COVID_INFO':
+            return {...state, covid: action.payload}
         default:
             return state
     }

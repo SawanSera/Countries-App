@@ -5,7 +5,8 @@ export const CountriesContext = createContext();
 const initalState = {
     country:[],
     homepage: false,
-    category: 'Sort by region'
+    category: 'Sort by region',
+    covid:[]
 }
 
 const CountriesContextProvider = (props) => {

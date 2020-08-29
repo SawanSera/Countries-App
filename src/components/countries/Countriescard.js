@@ -24,7 +24,7 @@ const CountriesCard = ({ country }) => {
                             <img alt="country flag" src={country.flag} />
                         </div>
                         <div className="card-content">
-                            <h5>{country.name} branch added</h5>
+                            <h5>{country.name}</h5>
                         </div>
                     </div>
                 </div>
